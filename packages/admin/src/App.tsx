@@ -5,6 +5,7 @@ import { Button } from 'antd'
 
 function App() {
   const [count, setCount] = useState(0)
+  const { VITE_TITLE, VITE_NAME } = import.meta.env
 
   return (
     <>
@@ -16,7 +17,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1 className="bg-red-200 pb-3 pt-2 text-red-500">Vite + React</h1>
+      <h1 className="bg-red-200 pb-3 pt-2 text-red-500">Vite + React{VITE_TITLE + VITE_NAME}</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         <p>
