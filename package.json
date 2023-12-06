@@ -15,7 +15,8 @@
 		"packages/*"
 	],
 	"scripts": {
-		"preinstall": "npx only-allow pnpm"
+		"preinstall": "npx only-allow pnpm",
+		"start": "pnpm -r dev"
 	},
 	"dependencies": {},
 	"devDependencies": {
