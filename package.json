@@ -1,15 +1,23 @@
 {
-	"name": "root",
+	"name": "vven-admin",
+	"description": "采用react+nest搭建的全栈项目",
+	"version": "0.0.1",
 	"private": true,
+	"author": {
+		"name": "liwenkai",
+		"email": "2020583117@qq.com",
+		"url": "https://github.com/liwenka1"
+	},
 	"engines": {
 		"node": ">=18.0.0"
 	},
 	"workspaces": [
 		"packages/*"
 	],
-	"dependencies": {
+	"scripts": {
 		"preinstall": "npx only-allow pnpm"
 	},
+	"dependencies": {},
 	"devDependencies": {
 		"lerna": "^8.0.0"
 	}
