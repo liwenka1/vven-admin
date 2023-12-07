@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  bin-wrapper: npm:bin-wrapper-china
+
 importers:
 
   .:
@@ -87,12 +90,18 @@ importers:
       '@nestjs/common':
         specifier: ^10.0.0
         version: 10.2.10(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/config':
+        specifier: ^3.1.1
+        version: 3.1.1(@nestjs/common@10.2.10)(reflect-metadata@0.1.13)
       '@nestjs/core':
         specifier: ^10.0.0
         version: 10.2.10(@nestjs/common@10.2.10)(@nestjs/platform-express@10.2.10)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/platform-express':
         specifier: ^10.0.0
         version: 10.2.10(@nestjs/common@10.2.10)(@nestjs/core@10.2.10)
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       reflect-metadata:
         specifier: ^0.1.13
         version: 0.1.13
@@ -1350,6 +1359,20 @@ packages:
       rxjs: 7.8.1
       tslib: 2.6.2
       uid: 2.0.2
+
+  /@nestjs/config@3.1.1(@nestjs/common@10.2.10)(reflect-metadata@0.1.13):
+    resolution: {integrity: sha512-qu5QlNiJdqQtOsnB6lx4JCXPQ96jkKUsOGd+JXfXwqJqZcOSAq6heNFg0opW4pq4J/VZoNwoo87TNnx9wthnqQ==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0 || ^9.0.0 || ^10.0.0
+      reflect-metadata: ^0.1.13
+    dependencies:
+      '@nestjs/common': 10.2.10(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      dotenv: 16.3.1
+      dotenv-expand: 10.0.0
+      lodash: 4.17.21
+      reflect-metadata: 0.1.13
+      uuid: 9.0.0
+    dev: false
 
   /@nestjs/core@10.2.10(@nestjs/common@10.2.10)(@nestjs/platform-express@10.2.10)(reflect-metadata@0.1.13)(rxjs@7.8.1):
     resolution: {integrity: sha512-+ckOI6BPi2ZMHikT9MCG4ctHDc4OnjhoIytrn7f2AYMMXI4bnutJhqyQKc30VDka5x3Wq6QAD57pgSP7y+JjJg==}
@@ -3293,14 +3316,16 @@ packages:
       find-versions: 3.2.0
     dev: true
 
-  /bin-wrapper@4.1.0:
-    resolution: {integrity: sha512-hfRmo7hWIXPkbpi0ZltboCMVrU+0ClXR/JgbCKKjlDjQf6igXa7OwdqNcFWQZPZTgiY7ZpzE3+LjjkLiTN2T7Q==}
-    engines: {node: '>=6'}
+  /bin-wrapper-china@0.1.0:
+    resolution: {integrity: sha512-1UCm17WYEbgry50tup+AQN+JGVEVzoW4f8HMl899k1lvuFxWKGZXl/G2fgxQxAckRjnloO3ijLVVEsv8zescUg==}
+    engines: {node: '>=8.3'}
+    hasBin: true
     dependencies:
       bin-check: 4.1.0
       bin-version-check: 4.0.0
+      binary-mirror-config: 1.41.0
       download: 7.1.0
-      import-lazy: 3.1.0
+      import-lazy: 4.0.0
       os-filter-obj: 2.0.0
       pify: 4.0.1
     dev: true
@@ -3308,6 +3333,10 @@ packages:
   /binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
+    dev: true
+
+  /binary-mirror-config@1.41.0:
+    resolution: {integrity: sha512-ZiIhR1s6Sv1Fv6qCQqfPjx0Cj86BgFlhqNxZgHkQOWcxJcMbO3mj1iqsuVjowYqJqeZL8e52+IEv7IRnSX6T6w==}
     dev: true
 
   /bl@1.2.3:
@@ -4059,6 +4088,14 @@ packages:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
 
+  /cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+    dev: false
+
   /cross-spawn@5.1.0:
     resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
     dependencies:
@@ -4085,7 +4122,6 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
-    dev: true
 
   /css-select@4.3.0:
     resolution: {integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==}
@@ -4140,7 +4176,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
     dev: true
 
   /dargs@7.0.0:
@@ -4427,12 +4463,10 @@ packages:
   /dotenv-expand@10.0.0:
     resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
     engines: {node: '>=12'}
-    dev: true
 
   /dotenv@16.3.1:
     resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
-    dev: true
 
   /download@6.2.5:
     resolution: {integrity: sha512-DpO9K1sXAST8Cpzb7kmEhogJxymyVUd5qz/vCOSyvwtp2Klj2XcDt5YUuasgxka44SxF0q5RriKIwJmQHG2AuA==}
@@ -5627,7 +5661,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
       execa: 5.0.0
       logalot: 2.1.0
     dev: true
@@ -6149,9 +6183,9 @@ packages:
       resolve-from: 4.0.0
     dev: true
 
-  /import-lazy@3.1.0:
-    resolution: {integrity: sha512-8/gvXvX2JMn0F+CDlSC4l6kOmVaLOO3XLkksI7CI3Ud95KDYJuYur2b9P/PUt/i/pDAMd/DulQsNbbbmRRsDIQ==}
-    engines: {node: '>=6'}
+  /import-lazy@4.0.0:
+    resolution: {integrity: sha512-rKtvo6a868b5Hu3heneU+L4yEQ4jYKLtjpnPeUdK7h0yzXGmyBTypknlkCvHFBqfX9YlorEiMM6Dnq/5atfHkw==}
+    engines: {node: '>=8'}
     dev: true
 
   /import-local@3.1.0:
@@ -6478,7 +6512,6 @@ packages:
 
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
-    dev: true
 
   /isobject@3.0.1:
     resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
@@ -7008,7 +7041,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
       logalot: 2.1.0
     dev: true
 
@@ -7019,7 +7052,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
     dev: true
 
   /js-tokens@4.0.0:
@@ -7357,7 +7390,6 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-symbols@4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
@@ -7824,7 +7856,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
     dev: true
 
   /ms@2.0.0:
@@ -8284,7 +8316,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
     dev: true
 
   /ora@5.4.1:
@@ -8591,7 +8623,6 @@ packages:
   /path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
     engines: {node: '>=8'}
-    dev: true
 
   /path-key@4.0.0:
     resolution: {integrity: sha512-haREypq7xkM7ErfgIyA0z+Bj4AGKlMSdlQE2jvJo6huWD1EdkKYV+G/T4nq0YEF2vgTT8kqMFKo1uHn950r4SQ==}
@@ -8710,7 +8741,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
       execa: 4.1.0
     dev: true
 
@@ -10009,7 +10040,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       shebang-regex: 3.0.0
-    dev: true
 
   /shebang-regex@1.0.0:
     resolution: {integrity: sha512-wpoSFAxys6b2a2wHZ1XpDSgD7N9iVjg29Ph9uV/uaP9Ex/KXlkTZTeddxDPSYQpgvzKLGJke2UU0AzoGCjNIvQ==}
@@ -10019,7 +10049,6 @@ packages:
   /shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
-    dev: true
 
   /shelljs@0.8.5:
     resolution: {integrity: sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==}
@@ -11044,6 +11073,11 @@ packages:
     hasBin: true
     dev: true
 
+  /uuid@9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
+
   /uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
@@ -11263,7 +11297,6 @@ packages:
     hasBin: true
     dependencies:
       isexe: 2.0.0
-    dev: true
 
   /which@3.0.1:
     resolution: {integrity: sha512-XA1b62dzQzLfaEOSQFTCOd5KFf/1VSzZo7/7TUjnya6u0vGGKzU96UQBZTAThCb2j4/xjBAyii1OhRLJEivHvg==}

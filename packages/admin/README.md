@@ -2,4 +2,4 @@
 
 ### 技术栈
 
-vite5+react18+react-router6+antd5+tailwindicss+zustand
+vite5 + react18 + react-router6 + antd5 + tailwindicss + zustand

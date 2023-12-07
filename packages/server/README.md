@@ -2,4 +2,4 @@
 
 ### 技术栈
 
-nestjs+prisma+mysql+redis
+nestjs + mysql + prisma + redis + jwt + swagger

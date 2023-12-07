@@ -14,6 +14,9 @@
 	"workspaces": [
 		"packages/*"
 	],
+	"resolutions": {
+		"bin-wrapper": "npm:bin-wrapper-china"
+	},
 	"scripts": {
 		"dev": "pnpm -r dev"
 	},
