@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
         threshold: 10240, // 如果体积大于阈值，将被压缩，单位为b，体积过小时请不要压缩，以免适得其反
         algorithm: 'gzip', // 压缩算法，可选['gzip'，' brotliccompress '，'deflate '，'deflateRaw'
         ext: '.gz',
-        deleteOriginFile: true // 源文件压缩后是否删除(无需删除，防止浏览器不支持 gizp)
+        deleteOriginFile: false // 源文件压缩后是否删除(无需删除，防止浏览器不支持 gizp)
       })
     ],
     // 开发或生产环境服务的公共基础路径 配置引入相对路径
