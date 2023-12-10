@@ -26,7 +26,7 @@ const BaseLayout: React.FC = () => {
   return (
     <Layout className="h-full">
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div />
+        <div className="m-[16px] h-[32px] rounded bg-slate-500" />
         <Menu
           theme="dark"
           mode="inline"
@@ -39,7 +39,12 @@ const BaseLayout: React.FC = () => {
               label: 'nav 1'
             },
             {
-              key: '/about',
+              key: '/user',
+              icon: <VideoCameraOutlined />,
+              label: 'nav 2'
+            },
+            {
+              key: '/menu',
               icon: <VideoCameraOutlined />,
               label: 'nav 2'
             },

@@ -20,6 +20,14 @@ const routes: RouteObject[] = [
         element: lazyLoad(lazy(() => import('@/pages/home')))
       },
       {
+        path: 'user',
+        element: lazyLoad(lazy(() => import('@/pages/user')))
+      },
+      {
+        path: 'menu',
+        element: lazyLoad(lazy(() => import('@/pages/menu')))
+      },
+      {
         path: 'about',
         element: lazyLoad(lazy(() => import('@/pages/about')))
       }
