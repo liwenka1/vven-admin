@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react'
+
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { Layout, Menu, MenuProps } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { useMatches, useNavigate } from 'react-router-dom'
 
 import useGlobalStore from '@/stores/useGlobal'
 
@@ -14,6 +16,23 @@ const Sider = () => {
 
   const { collapsed } = useGlobalStore()
 
+  const matches = useMatches()
+  console.log(matches)
+  const [openKeys, setOpenKeys] = useState<string[]>([])
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([])
+
+  useEffect(() => {
+    if (collapsed) {
+      setOpenKeys([])
+    } else {
+      if (matches.length > 0) {
+        const route = matches.at(-1)
+        const handle = route?.handle
+        console.log(handle, setSelectedKeys)
+      }
+    }
+  }, [collapsed, matches])
+
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <div className="m-[16px] h-[32px] rounded bg-slate-500" />
@@ -21,7 +40,8 @@ const Sider = () => {
         theme="dark"
         mode="inline"
         onClick={handleMenuClick}
-        defaultSelectedKeys={['/home']}
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
         items={[
           {
             key: '/home',
