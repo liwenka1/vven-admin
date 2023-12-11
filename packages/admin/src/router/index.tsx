@@ -4,12 +4,13 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 
 import lazyLoad from './lazyLoad'
-import BaseLayout from '@/components/layout'
+import BasicLayout from '@/components/layout'
+import NotFound from '@/components/notFound'
 
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <BaseLayout />,
+    Component: BasicLayout,
     children: [
       {
         index: true,
@@ -30,11 +31,15 @@ const routes: RouteObject[] = [
       {
         path: 'about',
         element: lazyLoad(lazy(() => import('@/pages/about')))
+      },
+      {
+        path: '*',
+        Component: NotFound
       }
     ]
   }
 ]
 
-export const browserRouter = createBrowserRouter(routes, {
+export const router = createBrowserRouter(routes, {
   basename: import.meta.env.VITE_ROUTER_BASE_URL
 })

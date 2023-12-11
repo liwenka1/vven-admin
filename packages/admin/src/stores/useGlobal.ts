@@ -1,15 +1,16 @@
 import { create } from 'zustand'
 
-interface GlobalStore {
-  bears: number
-  increasePopulation: (bears: GlobalStore['bears']) => void
-  removeAllBears: () => void
+interface State {
+  collapsed: boolean
 }
 
-const useGlobalStore = create<GlobalStore>((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 })
+interface Action {
+  setCollapsed: (collapsed: State['collapsed']) => void
+}
+
+const useGlobalStore = create<State & Action>((set) => ({
+  collapsed: false,
+  setCollapsed: (collapsed: State['collapsed']) => set({ collapsed })
 }))
 
 export default useGlobalStore
