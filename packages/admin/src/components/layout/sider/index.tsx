@@ -6,9 +6,9 @@ import { useMatches, useNavigate } from 'react-router-dom'
 
 import useGlobalStore from '@/stores/useGlobal'
 
-const Sider = () => {
-  const { Sider } = Layout
+const { Sider: AntSider } = Layout
 
+const Sider = () => {
   const navigate = useNavigate()
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     navigate(key)
@@ -34,7 +34,7 @@ const Sider = () => {
   }, [collapsed, matches])
 
   return (
-    <Sider trigger={null} collapsible collapsed={collapsed}>
+    <AntSider trigger={null} collapsible collapsed={collapsed}>
       <div className="m-[16px] h-[32px] rounded bg-slate-500" />
       <Menu
         theme="dark"
@@ -65,7 +65,7 @@ const Sider = () => {
           }
         ]}
       />
-    </Sider>
+    </AntSider>
   )
 }
 

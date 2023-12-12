@@ -3,16 +3,16 @@ import { Layout, Button, theme } from 'antd'
 
 import useGlobalStore from '@/stores/useGlobal'
 
-const Header = () => {
-  const { Header } = Layout
+const { Header: AntHeader } = Layout
 
+const Header = () => {
   const { collapsed, setCollapsed } = useGlobalStore()
   const {
     token: { colorBgContainer }
   } = theme.useToken()
 
   return (
-    <Header style={{ padding: 0, background: colorBgContainer }}>
+    <AntHeader style={{ padding: 0, background: colorBgContainer }}>
       <Button
         type="text"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -23,7 +23,7 @@ const Header = () => {
           height: 64
         }}
       />
-    </Header>
+    </AntHeader>
   )
 }
 
