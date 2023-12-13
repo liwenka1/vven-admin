@@ -7,13 +7,10 @@ USER root
 # 构建项目
 COPY ./ ./
 
-# 安装pnpm
+# 安装依赖并打包
 RUN npm config set registry https://registry.npmmirror.com
-RUN npm install -g pnpm
-# 安装依赖并
-RUN pnpm config set registry https://registry.npmmirror.com
-RUN pnpm install
-RUN pnpm run build
+RUN npm install
+RUN npm run build
 
 
 FROM nginx:alpine as production
