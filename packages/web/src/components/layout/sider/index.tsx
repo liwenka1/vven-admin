@@ -26,7 +26,7 @@ const Sider = () => {
       setOpenKeys([])
     } else {
       if (matches.length > 0) {
-        const route = matches.at(-1)
+        const route = matches[matches.length - 1]
         const handle = route?.handle
         console.log(handle, setSelectedKeys)
       }

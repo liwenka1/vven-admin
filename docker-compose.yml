@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  vven-admin-web:
+    image: vven-admin-web
+    container_name: admin-web
+    ports:
+      - '3002:3002'
+    restart: always
+    networks:
+      - vven_admin_net
+
+  mysql:
+    image: mysql:latest
+    container_name: admin-mysql
+    restart: always
+    ports:
+      - '3306:3306'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci #设置utf8字符集
+    networks:
+      - vven_admin_net
+
+  redis:
+    image: redis:alpine
+    container_name: admin-redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: >
+      --requirepass 123456
+    networks:
+      - vven_admin_net
+
+  vven-admin-server:
+    image: vven-admin-server
+    container_name: admin-server
+    ports:
+      - '3000:3000'
+    restart: always
+    # 当前服务启动之前先要把depends_on指定的服务启动起来才行
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - vven_admin_net
+
+networks:
+  vven_admin_net:
+    name: vven_admin_net
