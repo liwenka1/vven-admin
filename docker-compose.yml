@@ -14,9 +14,13 @@ services:
     image: mysql:latest
     container_name: admin-mysql
     restart: always
+    env_file:
+      - .env
     ports:
       - '3306:3306'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci #设置utf8字符集
+    volumes:
+      - ./deploy/sql/:/docker-entrypoint-initdb.d/ # 初始化的脚本
     networks:
       - vven_admin_net
 
