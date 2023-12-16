@@ -9,4 +9,14 @@ export class UserController {
   create(@Body() params: any): Promise<void> {
     return this.userService.create(params)
   }
+
+  @Post('get')
+  get(@Body() params: { key: string }): Promise<any> {
+    return this.userService.redisGet(params.key)
+  }
+
+  @Post('set')
+  set(@Body() params: { key: string; value: string }): Promise<any> {
+    return this.userService.redisSet(params.key, params.value)
+  }
 }
