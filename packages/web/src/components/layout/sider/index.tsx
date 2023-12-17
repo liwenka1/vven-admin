@@ -27,8 +27,9 @@ const Sider = () => {
     } else {
       if (matches.length > 0) {
         const route = matches[matches.length - 1]
-        const handle = route?.handle
-        console.log(handle, setSelectedKeys)
+        const pathname = route?.pathname as string
+        setOpenKeys([pathname])
+        setSelectedKeys([pathname])
       }
     }
   }, [collapsed, matches])

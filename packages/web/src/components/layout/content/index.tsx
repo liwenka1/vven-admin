@@ -9,7 +9,7 @@ const Content = () => {
   } = theme.useToken()
 
   return (
-    <AntContent className={`mx-[24px] my-[16px] min-h-[280px] bg-[${colorBgContainer}] p-[24px]`}>
+    <AntContent className={`mx-[24px] my-[16px] min-h-[280px] p-[24px]`} style={{ background: colorBgContainer }}>
       <Outlet />
     </AntContent>
   )
