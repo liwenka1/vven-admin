@@ -2,6 +2,7 @@ version: '3'
 
 services:
   vven-admin-web:
+    # build: ./packages/web
     image: vven-admin-web
     container_name: admin-web
     ports:
@@ -17,7 +18,7 @@ services:
     env_file:
       - .env
     ports:
-      - '3306:3306'
+      - '${MYSQL_PORT}:3306'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci #设置utf8字符集
     volumes:
       - ./deploy/sql/:/docker-entrypoint-initdb.d/ # 初始化的脚本
@@ -28,14 +29,17 @@ services:
     image: redis:alpine
     container_name: admin-redis
     restart: always
+    env_file:
+      - .env
     ports:
-      - '6379:6379'
+      - '${REDIS_PORT}:6379'
     command: >
-      --requirepass 123456
+      --requirepass ${REDIS_PASSWORD}
     networks:
       - vven_admin_net
 
   vven-admin-server:
+    # build: ./packages/server
     image: vven-admin-server
     container_name: admin-server
     ports:
