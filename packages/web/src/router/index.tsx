@@ -7,7 +7,7 @@ import lazyLoad from './lazyLoad'
 import BasicLayout from '@/components/layout'
 import NotFound from '@/components/notFound'
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     path: '/',
     Component: BasicLayout,
