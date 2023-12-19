@@ -1,16 +1,16 @@
 import { Layout } from 'antd'
 
-import Sider from './sider'
-import Header from './header'
-import Content from './content'
+import LayoutHeader from './header'
+import LayoutContent from './content'
+import LayoutSider from './sider'
 
 const BasicLayout: React.FC = () => {
   return (
     <Layout className="h-full">
-      <Sider />
+      <LayoutSider />
       <Layout>
-        <Header />
-        <Content />
+        <LayoutHeader />
+        <LayoutContent />
       </Layout>
     </Layout>
   )

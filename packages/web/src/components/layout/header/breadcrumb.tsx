@@ -1,8 +1,8 @@
 import React from 'react'
-import { Breadcrumb as AntBreadcrumb } from 'antd'
+import { Breadcrumb } from 'antd'
 
-const Breadcrumb: React.FC = () => (
-  <AntBreadcrumb
+const HeaderBreadcrumb: React.FC = () => (
+  <Breadcrumb
     items={[
       {
         title: 'Home'
@@ -20,4 +20,4 @@ const Breadcrumb: React.FC = () => (
   />
 )
 
-export default Breadcrumb
+export default HeaderBreadcrumb

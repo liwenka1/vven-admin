@@ -1,19 +1,19 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Layout, Button, theme } from 'antd'
 
-import Breadcrumb from './breadcrumb'
 import useGlobalStore from '@/stores/useGlobal'
+import HeaderBreadcrumb from './breadcrumb'
 
-const { Header: AntHeader } = Layout
+const { Header } = Layout
 
-const Header = () => {
+const LayoutHeader = () => {
   const { collapsed, setCollapsed } = useGlobalStore()
   const {
     token: { colorBgContainer }
   } = theme.useToken()
 
   return (
-    <AntHeader className="flex items-center" style={{ padding: 0, background: colorBgContainer }}>
+    <Header className="flex items-center" style={{ padding: 0, background: colorBgContainer }}>
       <Button
         type="text"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -24,9 +24,9 @@ const Header = () => {
           height: 64
         }}
       />
-      <Breadcrumb />
-    </AntHeader>
+      <HeaderBreadcrumb />
+    </Header>
   )
 }
 
-export default Header
+export default LayoutHeader
