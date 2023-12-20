@@ -2,6 +2,8 @@ import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } fro
 import { Menu, MenuProps } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
+import useGlobalStore from '@/stores/useGlobal'
+
 type MenuItem = Required<MenuProps>['items'][number]
 
 function getItem(
@@ -36,11 +38,27 @@ const items: MenuItem[] = [
 
 const SiderMenu = () => {
   const navigate = useNavigate()
+  const { openKeys, setOpenKeys, selectedKeys, setSelectedKeys } = useGlobalStore()
+
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
+    setSelectedKeys([key])
     navigate(key)
   }
+  const onOpenChange = (openKeys: string[]) => {
+    setOpenKeys(openKeys)
+  }
 
-  return <Menu theme="dark" mode="inline" onClick={handleMenuClick} items={items} />
+  return (
+    <Menu
+      theme="dark"
+      mode="inline"
+      onClick={handleMenuClick}
+      onOpenChange={onOpenChange}
+      items={items}
+      openKeys={openKeys}
+      selectedKeys={selectedKeys}
+    />
+  )
 }
 
 export default SiderMenu
