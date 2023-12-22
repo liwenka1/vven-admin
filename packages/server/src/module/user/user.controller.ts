@@ -1,6 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common'
 import { UserService } from './user.service'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('角色权限模块')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
