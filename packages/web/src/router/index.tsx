@@ -7,6 +7,39 @@ import lazyLoad from './lazyLoad'
 import BasicLayout from '@/components/layout'
 import NotFound from '@/components/notFound'
 
+export const menus = [
+  {
+    name: '首页',
+    parentId: null,
+    path: '',
+    show: true
+  },
+  {
+    name: '工作台',
+    parentId: 0,
+    path: '/home',
+    show: true
+  },
+  {
+    name: '关于',
+    parentId: 0,
+    path: '/about',
+    show: true
+  },
+  {
+    name: '用户管理',
+    parentId: 0,
+    path: '/user',
+    show: true
+  },
+  {
+    name: '菜单管理',
+    parentId: 0,
+    path: '/menu',
+    show: true
+  }
+]
+
 export const routes: RouteObject[] = [
   {
     path: '/',
