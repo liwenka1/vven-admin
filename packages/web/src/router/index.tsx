@@ -9,30 +9,35 @@ import NotFound from '@/components/notFound'
 
 export const menus = [
   {
+    id: 0,
     name: '首页',
     parentId: null,
     path: '',
     show: true
   },
   {
+    id: 1,
     name: '工作台',
     parentId: 0,
     path: '/home',
     show: true
   },
   {
+    id: 2,
     name: '关于',
     parentId: 0,
     path: '/about',
     show: true
   },
   {
+    id: 3,
     name: '用户管理',
     parentId: 0,
     path: '/user',
     show: true
   },
   {
+    id: 4,
     name: '菜单管理',
     parentId: 0,
     path: '/menu',

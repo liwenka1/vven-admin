@@ -3,6 +3,8 @@ import { Menu, MenuProps } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 import useGlobalStore from '@/stores/useGlobal'
+import { menus } from '@/router'
+import { arrayToTree } from '@/utils'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -20,14 +22,19 @@ function getItem(
   } as MenuItem
 }
 
-const items: MenuItem[] = [
-  getItem('Navigation One', '/1', <MailOutlined />, [getItem('Option home', '/home')]),
-  getItem('Navigation Two', '/2', <CalendarOutlined />, [getItem('Option about', '/about')]),
-  getItem('Navigation Two', '/3', <AppstoreOutlined />, [getItem('Option user', '/user')]),
-  getItem('Navigation Three', '/4', <SettingOutlined />, [getItem('Option menu', '/menu')])
-]
-
 const SiderMenu = () => {
+  const result = arrayToTree(menus)
+  console.log(result)
+  const items: MenuItem[] = result.map((menu) => {
+    if (menu.children) {
+      const itemChildren = []
+      for (const children of menu.children) {
+        itemChildren.push(getItem(children.name, children.path))
+      }
+      return getItem(menu.name, menu.path, <MailOutlined />, itemChildren)
+    }
+  })
+
   const navigate = useNavigate()
   const { openKeys, setOpenKeys, selectedKeys, setSelectedKeys } = useGlobalStore()
 
