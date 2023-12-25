@@ -1,19 +1,21 @@
-import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons'
+import { useEffect, useState } from 'react'
+
+import { MailOutlined } from '@ant-design/icons'
 import { Menu, MenuProps } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 import useGlobalStore from '@/stores/useGlobal'
 import { menus } from '@/router'
-import { arrayToTree } from '@/utils'
+import { MenuWithChildren, arrayToTree } from '@/utils'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
-function getItem(
+const getItem = (
   label: React.ReactNode,
   key?: React.Key | null,
   icon?: React.ReactNode,
   children?: MenuItem[]
-): MenuItem {
+): MenuItem => {
   return {
     key,
     icon,
@@ -23,18 +25,6 @@ function getItem(
 }
 
 const SiderMenu = () => {
-  const result = arrayToTree(menus)
-  console.log(result)
-  const items: MenuItem[] = result.map((menu) => {
-    if (menu.children) {
-      const itemChildren = []
-      for (const children of menu.children) {
-        itemChildren.push(getItem(children.name, children.path))
-      }
-      return getItem(menu.name, menu.path, <MailOutlined />, itemChildren)
-    }
-  })
-
   const navigate = useNavigate()
   const { openKeys, setOpenKeys, selectedKeys, setSelectedKeys } = useGlobalStore()
 
@@ -47,13 +37,29 @@ const SiderMenu = () => {
     setOpenKeys(openKeys)
   }
 
+  const [menuList, setMenuList] = useState<MenuItem[]>([])
+  useEffect(() => {
+    const buildMenuList = (menus: MenuWithChildren[]): MenuItem[] => {
+      return menus.map((menu) => {
+        const { name, path, children } = menu
+        if (children.length > 0) {
+          const itemChildren = buildMenuList(children)
+          return getItem(name, path, <MailOutlined />, itemChildren)
+        }
+        return getItem(name, path, <MailOutlined />)
+      })
+    }
+    const tree: MenuWithChildren[] = arrayToTree(menus)
+    setMenuList(buildMenuList(tree))
+  }, [])
+
   return (
     <Menu
       theme="dark"
       mode="inline"
       onClick={handleMenuClick}
       onOpenChange={onOpenChange}
-      items={items}
+      items={menuList}
       openKeys={openKeys}
       selectedKeys={selectedKeys}
     />

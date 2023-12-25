@@ -8,7 +8,7 @@ type Menu = {
 
 type MenuWithChildren = Menu & { children: MenuWithChildren[] }
 
-const arrayToTree = (items: Menu[]) => {
+const arrayToTree = (items: Menu[]): MenuWithChildren[] => {
   const result = []
   const map: Record<number, MenuWithChildren> = {}
   for (const item of items) {
@@ -43,4 +43,4 @@ const arrayToTree = (items: Menu[]) => {
   return result
 }
 
-export { arrayToTree }
+export { arrayToTree, type MenuWithChildren }
