@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import useGlobalStore from '@/stores/useGlobal'
 import axios, {
   AxiosInstance,
   AxiosRequestConfig,
@@ -7,6 +6,8 @@ import axios, {
   CreateAxiosDefaults,
   InternalAxiosRequestConfig
 } from 'axios'
+
+import useGlobalStore from '@/stores/useGlobal'
 
 type Response<T> = Promise<[boolean, T, AxiosResponse<T>]>
 

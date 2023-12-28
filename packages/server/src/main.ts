@@ -4,10 +4,10 @@ import { AppModule } from './app.module'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-
+  const { SERVER_PORT } = process.env
   // 文档支持
   generateDocmment(app)
 
-  await app.listen(3000)
+  await app.listen(SERVER_PORT)
 }
 bootstrap()
