@@ -1,4 +1,4 @@
-type Menu = {
+interface Menu {
   id: number
   name: string
   parentId: null | number
