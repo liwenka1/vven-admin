@@ -1,4 +1,4 @@
-import { menuApi } from '@/api/menu'
+import { menuApi } from '@/api'
 
 const Home = () => {
   const api = async () => {

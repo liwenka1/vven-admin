@@ -23,7 +23,7 @@ const arrayToTree = (items: Menu[]): MenuWithChildren[] => {
 
     map[id] = {
       ...item,
-      children: map[id]['children']
+      children: map[id].children
     }
 
     const treeItem = map[id]
