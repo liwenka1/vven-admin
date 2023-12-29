@@ -1,6 +1,6 @@
 import { Layout } from 'antd'
 
-import useGlobalStore from '@/stores/useGlobal'
+import { useGlobalStore } from '@/stores'
 import SiderMenu from './menu'
 
 const { Sider } = Layout

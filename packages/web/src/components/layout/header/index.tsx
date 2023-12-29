@@ -1,7 +1,7 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Layout, Button, theme } from 'antd'
 
-import useGlobalStore from '@/stores/useGlobal'
+import { useGlobalStore } from '@/stores'
 import HeaderBreadcrumb from './breadcrumb'
 
 const { Header } = Layout

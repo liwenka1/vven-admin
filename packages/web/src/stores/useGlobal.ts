@@ -14,7 +14,7 @@ interface Action {
   setToken: (token: State['token']) => void
 }
 
-const useGlobalStore = create<State & Action>((set) => ({
+export const useGlobalStore = create<State & Action>((set) => ({
   collapsed: false,
   openKeys: [],
   selectedKeys: [],
@@ -24,5 +24,3 @@ const useGlobalStore = create<State & Action>((set) => ({
   setSelectedKeys: (selectedKeys: State['selectedKeys']) => set({ selectedKeys }),
   setToken: (token: State['token']) => set({ token })
 }))
-
-export default useGlobalStore

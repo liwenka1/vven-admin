@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, {
+  AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
@@ -7,9 +8,13 @@ import axios, {
   InternalAxiosRequestConfig
 } from 'axios'
 
-import useGlobalStore from '@/stores/useGlobal'
+import { useGlobalStore } from '@/stores'
 
-type Response<T> = Promise<[boolean, T, AxiosResponse<T>]>
+interface Result<T = any> {
+  code: number
+  message: string
+  data?: T
+}
 
 class Request {
   constructor(config?: CreateAxiosDefaults) {
@@ -33,31 +38,32 @@ class Request {
     return Promise.resolve(axiosConfig)
   }
 
-  private responseInterceptorSuccess(response: AxiosResponse<unknown, unknown>): Promise<any> {
-    return Promise.resolve([false, response.data, response])
+  private responseInterceptorSuccess(response: AxiosResponse<Result>): Promise<any> {
+    const { data } = response
+    return Promise.resolve(data)
   }
 
-  private responseInterceptorError(error: unknown): Promise<any> {
-    return Promise.resolve([true, error])
+  private responseInterceptorError(error: AxiosError<Result>): Promise<any> {
+    return Promise.reject(error.response?.data)
   }
 
-  request<T, D = any>(config: AxiosRequestConfig<D>): Response<T> {
+  request<T, D = any>(config: AxiosRequestConfig<D>): Promise<T> {
     return this.axiosInstance(config)
   }
 
-  get<T, D = any>(url: string, config?: AxiosRequestConfig<D>): Response<T> {
+  get<T, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<T> {
     return this.axiosInstance.get(url, config)
   }
 
-  post<T, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Response<T> {
+  post<T, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
     return this.axiosInstance.post(url, data, config)
   }
 
-  put<T, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Response<T> {
+  put<T, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
     return this.axiosInstance.put(url, data, config)
   }
 
-  delete<T, D = any>(url: string, config?: AxiosRequestConfig<D>): Response<T> {
+  delete<T, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<T> {
     return this.axiosInstance.delete(url, config)
   }
 }

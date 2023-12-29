@@ -4,7 +4,7 @@ import { MailOutlined } from '@ant-design/icons'
 import { Menu, MenuProps } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
-import useGlobalStore from '@/stores/useGlobal'
+import { useGlobalStore } from '@/stores'
 import { menus } from '@/router'
 import { MenuWithChildren, arrayToTree } from '@/utils'
 
