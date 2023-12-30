@@ -44,7 +44,11 @@ class Request {
   }
 
   private responseInterceptorError(error: AxiosError<Result>): Promise<any> {
-    return Promise.reject(error.response?.data)
+    if (error.response) {
+      const { data } = error.response
+      return Promise.reject(data)
+    }
+    return Promise.reject(error)
   }
 
   request<T, D = any>(config: AxiosRequestConfig<D>): Promise<T> {
