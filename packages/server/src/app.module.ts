@@ -6,6 +6,8 @@ import { UserModule } from './module/user/user.module'
 import { MenuModule } from './module/menu/menu.module'
 import { PrismaService } from './services/prisma.service'
 import { RedisService } from './services/redis.service'
+import { APP_INTERCEPTOR } from '@nestjs/core'
+import { TransformInterceptor } from './common/interceptors/transform.interceptor'
 
 @Module({
   imports: [
@@ -17,6 +19,15 @@ import { RedisService } from './services/redis.service'
     MenuModule
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService, RedisService]
+  providers: [
+    {
+      //全局拦截器
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor
+    },
+    AppService,
+    PrismaService,
+    RedisService
+  ]
 })
 export class AppModule {}

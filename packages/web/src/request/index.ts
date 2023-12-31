@@ -11,9 +11,9 @@ import axios, {
 import { useGlobalStore } from '@/stores'
 
 interface Result<T = any> {
-  code: number
+  data: T
+  status: number
   message: string
-  data?: T
 }
 
 class Request {
