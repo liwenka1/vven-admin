@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common'
+import { Body, Controller, ForbiddenException, Get, Post } from '@nestjs/common'
 import { MenuService } from './menu.service'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { CreateMenuDto } from './menu.dto'
@@ -22,5 +22,13 @@ export class MenuController {
   @Post('create')
   create(@Body() dto: CreateMenuDto) {
     return this.menuService.createMenu(dto)
+  }
+
+  @ApiOperation({
+    summary: '错误测试'
+  })
+  @Get('error')
+  error() {
+    throw new ForbiddenException()
   }
 }
