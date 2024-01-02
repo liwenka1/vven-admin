@@ -29,6 +29,6 @@ export class MenuController {
   })
   @Get('error')
   error() {
-    throw new ForbiddenException()
+    throw new ForbiddenException({ code: 202, message: '出错了' })
   }
 }
