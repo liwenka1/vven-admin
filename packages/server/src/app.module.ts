@@ -7,8 +7,8 @@ import { MenuModule } from './module/menu/menu.module'
 import { PrismaService } from './services/prisma.service'
 import { RedisService } from './services/redis.service'
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core'
-import { TransformInterceptor } from './common/interceptors/transform.interceptor'
-import { HttpExceptionFilter } from './common/filter/http-exception.filter'
+import { TransformInterceptor } from './interceptors/transform.interceptor'
+import { HttpExceptionFilter } from './filter/http-exception.filter'
 
 @Module({
   imports: [
