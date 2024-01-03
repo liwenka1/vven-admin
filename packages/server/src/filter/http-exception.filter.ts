@@ -8,13 +8,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>()
     const request = ctx.getRequest<Request>()
     const status = exception.getStatus()
-    // 用于接收主动发错的错误信息
-    const { message, code } = exception.getResponse() as any
+    const message = exception.getResponse().valueOf()
+    const path = request.url
 
     response.status(status).json({
-      code: code || status,
-      timestamp: new Date().toISOString(),
-      path: request.url,
+      success: false,
+      status: status,
+      time: new Date().toISOString(),
+      path: path,
       message: message
     })
   }
