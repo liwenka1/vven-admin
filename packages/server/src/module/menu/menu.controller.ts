@@ -1,7 +1,8 @@
-import { Body, Controller, ForbiddenException, Get, Post } from '@nestjs/common'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 import { MenuService } from './menu.service'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { CreateMenuDto } from './menu.dto'
+import { testError } from 'src/common/exception'
 
 @ApiTags('菜单权限模块')
 @Controller('menu')
@@ -29,6 +30,6 @@ export class MenuController {
   })
   @Get('error')
   error() {
-    throw new ForbiddenException({ code: 202, message: '出错了' })
+    throw new testError('是一袭')
   }
 }
